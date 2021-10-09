@@ -12,9 +12,9 @@ class SummaryLintReportRecord {
   final Iterable<Object> overflows;
 
   const SummaryLintReportRecord({
-    required this.status,
+    this.status = SummaryLintReportRecordStatus.none,
     required this.title,
     required this.values,
-    required this.overflows,
+    this.overflows = const [],
   });
 }

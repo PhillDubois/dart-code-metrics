@@ -7,11 +7,14 @@ import '../../../models/severity.dart';
 const _deprecationMessage =
     'DEPRECATED! This reporter is deprecated and will be removed in 5.0.0. You can migrate on our GitHub Action.';
 
-class LintGitHubReporter extends GitHubReporter<LintFileReport> {
+class LintGitHubReporter extends GitHubReporter<LintFileReport, Object> {
   const LintGitHubReporter(IOSink output) : super(output);
 
   @override
-  Future<void> report(Iterable<LintFileReport> records) async {
+  Future<void> report(
+    Iterable<LintFileReport> records, {
+    Object? summary,
+  }) async {
     if (records.isEmpty) {
       return;
     }

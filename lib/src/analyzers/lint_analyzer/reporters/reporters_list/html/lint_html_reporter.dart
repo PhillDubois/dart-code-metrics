@@ -60,11 +60,14 @@ class ReportTableRecord {
   });
 }
 
-class LintHtmlReporter extends HtmlReporter<LintFileReport> {
+class LintHtmlReporter extends HtmlReporter<LintFileReport, Object> {
   LintHtmlReporter(String reportFolder) : super(reportFolder);
 
   @override
-  Future<void> report(Iterable<LintFileReport> records) async {
+  Future<void> report(
+    Iterable<LintFileReport> records, {
+    Object? summary,
+  }) async {
     await super.report(records);
 
     for (final record in records) {

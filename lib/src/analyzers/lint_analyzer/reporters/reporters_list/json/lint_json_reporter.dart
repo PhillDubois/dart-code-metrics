@@ -13,11 +13,14 @@ import '../../../models/replacement.dart';
 import '../../../models/report.dart';
 
 @immutable
-class LintJsonReporter extends JsonReporter<LintFileReport> {
+class LintJsonReporter extends JsonReporter<LintFileReport, Object> {
   const LintJsonReporter(IOSink output) : super(output, 2);
 
   @override
-  Future<void> report(Iterable<LintFileReport> records) async {
+  Future<void> report(
+    Iterable<LintFileReport> records, {
+    Object? summary,
+  }) async {
     if (records.isEmpty) {
       return;
     }

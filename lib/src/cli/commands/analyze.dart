@@ -56,13 +56,15 @@ class AnalyzeCommand extends BaseCommand {
       config,
     );
 
+    final lintAnalyserSummary = summary(lintAnalyserResult);
+
     await _analyzer
         .getReporter(
           name: argResults[FlagNames.reporter] as String,
           output: stdout,
           reportFolder: argResults[FlagNames.reportFolder] as String,
         )
-        ?.report(lintAnalyserResult);
+        ?.report(lintAnalyserResult, summary: lintAnalyserSummary);
 
     if (hasIssueWithSevetiry(lintAnalyserResult, Severity.error)) {
       exit(3);
